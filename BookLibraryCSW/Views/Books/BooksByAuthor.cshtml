@@ -1,14 +1,26 @@
 ﻿@model IEnumerable<BookLibraryCSW.Models.Books>
 
 @{
-    ViewBag.Title = "Books";
+    ViewBag.Title = "BooksByAuthor";
 }
 
-<h2>Books</h2>
+<h2>Books By Author</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+    @using (Html.BeginForm(
+        "Get", "Book",
+            FormMethod.Post))
+    {
+        <p>
+            @Html.LabelFor(model => model.):
+            @Html.EditorFor(model => model.Composer)
+            @Html.ValidationMessageFor(model => model.Composer)
+        </p>
+    }
+
 <table class="table">
     <tr>
         <th>

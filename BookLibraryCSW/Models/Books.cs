@@ -7,6 +7,7 @@ using System.Web;
 
 namespace BookLibraryCSW.Models
 {
+    [Serializable]
     public class Books
     {
         public int Id { get; set; }
