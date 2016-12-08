@@ -35,6 +35,16 @@ namespace BookLibraryCSW.Controllers
         public IQueryable<Books> GetBooksByCat(int idCategory)
         {
             return db.Books.Where(x => x.idCategory.Equals(idCategory));
+        }
+
+        /// <summary>
+        /// GET: Return all books by author
+        /// </summary>
+        /// <param name="idAuthor">id of the category</param>
+        /// <returns></returns>
+        public IQueryable<Books> GetBooksByAuthor(int idAuthor)
+        {
+            return db.Books.Where(x => x.idAuthor.Equals(idAuthor));
         }        
 
         // GET: api/Books1/5

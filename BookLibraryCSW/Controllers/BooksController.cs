@@ -22,11 +22,11 @@ namespace BookLibraryCSW.Controllers
             return View(await books.ToListAsync());
         }
 
-        // GET: Books by Author
-        public async Task<ActionResult> GetByAuthor(int idAuthor)
+        //// GET: Books by Author
+        public async Task<ActionResult> BooksAuthor()
         {
-            var books = db.Books.Where(b => b.idAuthor.Equals(idAuthor)).Include(b => b.Author).Include(b => b.Category);
-            return View(await books.ToListAsync());
+            ViewBag.idAuthor = new SelectList(db.Authors, "Id", "Name");
+            return View();
         }
 
         // GET: Books/Details/5

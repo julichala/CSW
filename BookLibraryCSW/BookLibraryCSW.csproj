@@ -162,8 +162,7 @@
     <Content Include="Views\Authors\Edit.cshtml" />
     <Content Include="Views\Authors\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Books\BooksByAuthor.cshtml" />
-    <Content Include="Views\Books\GetByAuthor.cshtml" />
+    <Content Include="Views\Books\BooksAuthor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,74 @@
+﻿@model BookLibraryCSW.Models.Books
+
+@{
+    ViewBag.Title = "BooksAuthor";
+}
+<h1>Books By Author</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idAuthor, "Author", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idAuthor", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idAuthor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-default" value="Get" onclick="GetBooksByAuthor()">Get</button>
+            </div>
+        </div>
+        <div>
+            <ul id="Books" />
+            <table id="Res" style="width:100%">
+                <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Year</td>
+                        <td>Price</td>
+                        <td>Author</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>        
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script>
+    function GetBooksByAuthor() {
+        var uri = '../api/Books1/?idAuthor=' + $('#idAuthor option:selected').val()
+        // Send an AJAX request
+        $.getJSON(uri)
+            .done(function (data) {
+                $.each(data, function (key, item) {
+                    $("#Res tbody").append("<tr>" +
+                        "<td>" + item.Titlek__BackingField + "</td>" +
+                          "<td>" + item.Year + "</td>" +
+                            "<td>" + item.Price + "</td>" +
+                              "<td>" + item.idAuthor + "</td></tr>");
+                    //$('#Res tbody').after('<tr><td>hola</td></tr>');
+                    //$("#Res tbody").append("<tr>" + item.Id + "</tr>");
+                    //$("#Res tbody").append("<tr>" + item.Nombre + "</tr>");
+                    //$("#Res tbody").append("<tr>" + item.Referencia + "</tr>");
+                    //$("#Res tbody").append("<tr>" + item.Precio + "</tr>");
+                });
+            });
+    };
+</script>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
