@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-default" value="Get" onclick="GetBooksByAuthor()">Get</button>
+                <button class="btn btn-default" value="Get" onclick="GetBooksByAuthor(); return false;">Get Books</button>                
             </div>
         </div>
         <div>
@@ -34,7 +34,7 @@
                         <td>Author</td>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody id="tbodyid"></tbody>
             </table>
         </div>        
     </div>
@@ -44,31 +44,26 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 <script>
     function GetBooksByAuthor() {
-        var uri = '../api/Books1/?idAuthor=' + $('#idAuthor option:selected').val()
+        var uri = '../api/Books1/?idAuthor=' + $('#idAuthor option:selected').val();
+        $("#tbodyid").empty();
         // Send an AJAX request
         $.getJSON(uri)
             .done(function (data) {
                 $.each(data, function (key, item) {
                     $("#Res tbody").append("<tr>" +
-                        "<td>" + item.Titlek__BackingField + "</td>" +
+                        "<td>" + item.Title + "</td>" +
                           "<td>" + item.Year + "</td>" +
                             "<td>" + item.Price + "</td>" +
                               "<td>" + item.idAuthor + "</td></tr>");
-                    //$('#Res tbody').after('<tr><td>hola</td></tr>');
-                    //$("#Res tbody").append("<tr>" + item.Id + "</tr>");
-                    //$("#Res tbody").append("<tr>" + item.Nombre + "</tr>");
-                    //$("#Res tbody").append("<tr>" + item.Referencia + "</tr>");
-                    //$("#Res tbody").append("<tr>" + item.Precio + "</tr>");
                 });
             });
     };
 </script>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 
