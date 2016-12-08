@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Runtime.Serialization;
 
 namespace BookLibraryCSW.Models
 {
-    [Serializable]
+    [Serializable, DataContract]
     public class Author
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required, DataMember]
         public string Name { get; set; }
+
+        [DataMember]
         public DateTime BirthDate { get; set; }
 
         public virtual ICollection<Books> Books { get; set; }
